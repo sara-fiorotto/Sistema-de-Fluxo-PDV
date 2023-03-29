@@ -71,6 +71,12 @@
     <Compile Include="Formularios\frmCobrancasClientes.Designer.cs">
       <DependentUpon>frmCobrancasClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmFiado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmFiado.Designer.cs">
+      <DependentUpon>frmFiado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
