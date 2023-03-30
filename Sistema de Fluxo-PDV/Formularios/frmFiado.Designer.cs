@@ -51,6 +51,7 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFiado";
             this.Text = "Devedores";
+            this.Load += new System.EventHandler(this.frmFiado_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

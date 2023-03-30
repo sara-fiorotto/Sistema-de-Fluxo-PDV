@@ -16,5 +16,10 @@ namespace Sistema_de_Fluxo_PDV.Formularios
         {
             InitializeComponent();
         }
+
+        private void frmFiado_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

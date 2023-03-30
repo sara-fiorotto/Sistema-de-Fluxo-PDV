@@ -68,7 +68,7 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             else
             {
                 decimal total_item = Int32.Parse(mskQntd.Text) * Decimal.Parse(valor);
-                gridItens.Rows.Add(nome, mskQntd.Text, total_item.ToString());
+                gridItens.Rows.Add(id, nome, mskQntd.Text, total_item.ToString());
             }
             evnt.LimparTextBox(mskQntd, txtBuscar, null, null);
             evnt.DesabilitaBotoes(mskQntd, btnAdicionar, btnDeletar, null);
@@ -94,6 +94,7 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             cmd.ExecuteNonQuery();
             conect.FecharConexao();
             adicionar_item();
+            SubtraiProduto();
             TotalCliente();
             MessageBox.Show("Venda Cadastrada com Sucesso!!", "Deu certo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             GeraComanda();
@@ -147,9 +148,9 @@ namespace Sistema_de_Fluxo_PDV.Formularios
                 //limpo os parâmetros
                 cmd.Parameters.Clear();
                 //crio os parâmetro do comando e passo as linhas do grid para eles onde a célula indica a coluna da tabela
-                cmd.Parameters.AddWithValue("@nome_prod", gridItens.Rows[i].Cells[0].Value);
-                cmd.Parameters.AddWithValue("@quantidade",gridItens.Rows[i].Cells[1].Value);
-                cmd.Parameters.AddWithValue("@valor",gridItens.Rows[i].Cells[2].Value);
+                cmd.Parameters.AddWithValue("@nome_prod", gridItens.Rows[i].Cells[1].Value);
+                cmd.Parameters.AddWithValue("@quantidade",gridItens.Rows[i].Cells[2].Value);
+                cmd.Parameters.AddWithValue("@valor",gridItens.Rows[i].Cells[3].Value);
                 cmd.Parameters.AddWithValue("@comanda", comanda);
                 //executo o comando
                 cmd.ExecuteNonQuery();
@@ -158,6 +159,31 @@ namespace Sistema_de_Fluxo_PDV.Formularios
 
             evnt.LimparTextBox(mskQntd, txtBuscar, null, null);
             evnt.DesabilitaBotoes(mskQntd, btnAdicionar, btnDeletar, btnLimpar);
+        }
+
+        private void SubtraiProduto()
+        {
+            int quant_atual, quant_sub, quant_nova; 
+
+            conect.AbrirConexao();
+            
+            for (int i = 0; i < gridItens.Rows.Count; i++)
+            {
+                sql = "SELECT quantidade FROM produtos WHERE id_produtos=@id";
+                cmd = new MySqlCommand(sql, conect.sqlConnection);
+                cmd.Parameters.AddWithValue("@id", gridItens.Rows[i].Cells[0].Value);
+                quant_atual = (int)cmd.ExecuteScalar();
+
+                quant_sub =  Convert.ToInt32(gridItens.Rows[i].Cells[2].Value);
+                quant_nova = quant_atual - quant_sub;
+
+                sql = "UPDATE produtos SET quantidade=@quantidade WHERE id_produtos=@id";
+                cmd = new MySqlCommand(sql, conect.sqlConnection);
+                cmd.Parameters.AddWithValue("@id", gridItens.Rows[i].Cells[0].Value);
+                cmd.Parameters.AddWithValue("@quantidade", quant_nova);
+                cmd.ExecuteNonQuery();
+            }
+            conect.FecharConexao();
         }
 
         private void TotalCliente()
@@ -203,7 +229,7 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             total = 0;
             foreach (DataGridViewRow row in gridItens.Rows)
             {
-                total += Convert.ToDecimal(row.Cells[2].Value);
+                total += Convert.ToDecimal(row.Cells[3].Value);
             }
 
             lblTotal.Text = Convert.ToDouble(total).ToString("C");

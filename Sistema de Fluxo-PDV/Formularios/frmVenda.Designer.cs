@@ -57,12 +57,13 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             this.mskQntd = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gridItens = new System.Windows.Forms.DataGridView();
-            this.NomeItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantidadeItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbPag = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnQuantidade = new System.Windows.Forms.Button();
+            this.cooolum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantidadeItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sistema_fluxo_caixaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource)).BeginInit();
@@ -297,6 +298,7 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             this.gridItens.AllowUserToDeleteRows = false;
             this.gridItens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridItens.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cooolum,
             this.NomeItem,
             this.QuantidadeItem,
             this.TotalItem});
@@ -308,26 +310,6 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             this.gridItens.Size = new System.Drawing.Size(374, 372);
             this.gridItens.TabIndex = 17;
             this.gridItens.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridItens_CellClick);
-            // 
-            // NomeItem
-            // 
-            this.NomeItem.HeaderText = "Nome";
-            this.NomeItem.Name = "NomeItem";
-            this.NomeItem.ReadOnly = true;
-            this.NomeItem.Width = 150;
-            // 
-            // QuantidadeItem
-            // 
-            this.QuantidadeItem.HeaderText = "Quantidade";
-            this.QuantidadeItem.Name = "QuantidadeItem";
-            this.QuantidadeItem.ReadOnly = true;
-            this.QuantidadeItem.Width = 80;
-            // 
-            // TotalItem
-            // 
-            this.TotalItem.HeaderText = "Total";
-            this.TotalItem.Name = "TotalItem";
-            this.TotalItem.ReadOnly = true;
             // 
             // cmbPag
             // 
@@ -361,6 +343,33 @@ namespace Sistema_de_Fluxo_PDV.Formularios
             this.btnQuantidade.Text = "Alterar";
             this.btnQuantidade.UseVisualStyleBackColor = true;
             this.btnQuantidade.Click += new System.EventHandler(this.btnQuantidade_Click);
+            // 
+            // cooolum
+            // 
+            this.cooolum.HeaderText = "ID";
+            this.cooolum.Name = "cooolum";
+            this.cooolum.ReadOnly = true;
+            this.cooolum.Visible = false;
+            // 
+            // NomeItem
+            // 
+            this.NomeItem.HeaderText = "Nome";
+            this.NomeItem.Name = "NomeItem";
+            this.NomeItem.ReadOnly = true;
+            this.NomeItem.Width = 150;
+            // 
+            // QuantidadeItem
+            // 
+            this.QuantidadeItem.HeaderText = "Quantidade";
+            this.QuantidadeItem.Name = "QuantidadeItem";
+            this.QuantidadeItem.ReadOnly = true;
+            this.QuantidadeItem.Width = 80;
+            // 
+            // TotalItem
+            // 
+            this.TotalItem.HeaderText = "Total";
+            this.TotalItem.Name = "TotalItem";
+            this.TotalItem.ReadOnly = true;
             // 
             // frmVenda
             // 
@@ -430,9 +439,10 @@ namespace Sistema_de_Fluxo_PDV.Formularios
         private System.Windows.Forms.DataGridView gridItens;
         private System.Windows.Forms.ComboBox cmbPag;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnQuantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cooolum;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomeItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuantidadeItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalItem;
-        private System.Windows.Forms.Button btnQuantidade;
     }
 }
